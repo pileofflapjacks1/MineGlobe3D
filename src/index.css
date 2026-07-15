@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0f1c;
+  --color-bg-elevated: #0f1629;
+  --color-bg-panel: #121a2e;
+  --color-bg-hover: #1a2438;
+  --color-border: #1e2a42;
+  --color-border-subtle: #162033;
+  --color-gold: #d4af37;
+  --color-gold-dim: #a68b2a;
+  --color-gold-bright: #f0d060;
+  --color-silver: #a8b5c4;
+  --color-silver-dim: #7a8796;
+  --color-teal: #0ea5e9;
+  --color-teal-dim: #0284c7;
+  --color-text: #e8edf5;
+  --color-text-muted: #8b9bb4;
+  --color-text-dim: #5a6a84;
+  --color-success: #34d399;
+  --color-danger: #f87171;
+  --color-warning: #fbbf24;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-dim);
+}
+
+/* Globe canvas container */
+.globe-container canvas {
+  outline: none;
+}
+
+/* cmdk search */
+[cmdk-root] {
+  width: 100%;
+}
+[cmdk-input] {
+  width: 100%;
+  outline: none;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+[cmdk-input]::placeholder {
+  color: var(--color-text-dim);
+}
+[cmdk-list] {
+  max-height: 320px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+[cmdk-item] {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+[cmdk-item][data-selected="true"] {
+  background: var(--color-bg-hover);
+}
+[cmdk-item][data-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+[cmdk-group-heading] {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dim);
+  padding: 0.5rem 0.75rem 0.25rem;
+}
+[cmdk-empty] {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+/* Globe HTML marker */
+.site-marker {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  pointer-events: auto;
+}
+.site-marker:hover {
+  transform: scale(1.25);
+  z-index: 10;
+}
+
+/* Bottom sheet drag handle */
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 2px;
+  margin: 0 auto 0.75rem;
+}
+
+/* Focus rings */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Recharts tooltip overrides */
+.recharts-default-tooltip {
+  background: var(--color-bg-panel) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 8px !important;
+}
