@@ -4,31 +4,42 @@ A modern, professional, fully interactive **3D globe** web app for exploring **N
 
 > **Illustrative data based on public company reports and filings as of mid-2026. For demonstration and educational purposes only. Always verify with official 10-Q/10-K, AIF, or company IR releases. Not financial advice.**
 
-## Quick start
+## Quick start (clone from GitHub)
 
 ```bash
+git clone https://github.com/pileofflapjacks1/MineGlobe3D.git
 cd MineGlobe3D
 npm install
-npm run dev:all    # UI + yfinance quote API together
+npm run dev          # globe UI → http://localhost:5173
 ```
 
-Or separately:
+**Full features** (live stock quotes + SEC EDGAR + LLM proxy):
 
 ```bash
-npm run dev        # frontend → http://localhost:5173
-npm run dev:api    # yfinance FastAPI → http://127.0.0.1:8000
+# Needs Python 3.10+ on your PATH (or: PYTHON=/path/to/python3.11 npm run dev:api)
+npm run dev:all      # UI + local API on :8000
 ```
 
-Without the quote API the globe still works; stock prices fall back to static mock values.
+Or run separately:
 
 ```bash
-npm run build      # production build
-npm run preview    # preview production build
+npm run dev          # frontend only
+npm run dev:api      # local API (quotes, EDGAR, LLM proxy)
+```
+
+| What you run | Globe & demo mining data | Live prices | EDGAR filings | Ask AI (your key) |
+|--------------|--------------------------|-------------|---------------|-------------------|
+| `npm run dev` only | Yes | Mock fallback | Offline message | Needs API server |
+| `npm run dev:all` | Yes | yfinance | Live from SEC | Yes (optional key) |
+
+```bash
+npm run build        # production build
+npm run preview      # preview production build
 ```
 
 **Requirements:**
-- Node.js 18+ (tested with Node 24)
-- Python **3.10+** for live quotes (`yfinance`). `server/run.sh` creates a venv automatically (prefers Anaconda 3.11 over system 3.8).
+- **Node.js 18+** (tested with Node 24) — enough for the core app
+- **Python 3.10+** (optional) — only for live quotes, EDGAR, and the LLM proxy. `server/run.sh` creates a venv and installs deps automatically. If `python3` is older (e.g. macOS 3.8), install a newer Python and either put it first on `PATH` or run `PYTHON=$(which python3.11) npm run dev:api`.
 
 ## Features
 
